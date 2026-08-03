@@ -108,7 +108,7 @@ struct ContentView: View {
         VStack(alignment: .leading, spacing: 15) {
             sectionTitle(eyebrow: "YOUR SIGNALS", title: "Body at a glance")
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-                MetricCard(title: "Heart rate", value: health.snapshot.heartRate.map { String(format: "%.0f", $0) } ?? "—", unit: health.snapshot.heartRate == nil ? "scan to measure" : "bpm", detail: health.snapshot.heartRateSource, icon: "heart.fill", color: .vitaSage)
+                MetricCard(title: "Heart rate", value: health.snapshot.heartRate.map { String(format: "%.0f", $0) } ?? "—", unit: health.snapshot.heartRate == nil ? "scan to estimate" : health.snapshot.heartRateSource == "Camera estimate" ? "estimated bpm" : "bpm", detail: health.snapshot.heartRateSource, icon: "heart.fill", color: .vitaSage)
                 MetricCard(title: "Oxygen", value: oxygenValue, unit: health.snapshot.oxygenSaturation == nil ? "validated device" : "% SpO₂", detail: "Apple Health", icon: "lungs.fill", color: .vitaLavender)
                 MetricCard(title: "Blood pressure", value: bloodPressureValue, unit: health.snapshot.systolic == nil ? "validated device" : "mmHg", detail: "Apple Health", icon: "arrow.up.arrow.down", color: .vitaBlush)
                 MetricCard(title: "VO₂ max", value: health.snapshot.vo2Max.map { String(format: "%.1f", $0) } ?? "—", unit: health.snapshot.vo2Max == nil ? "Apple Watch" : "mL/kg·min", detail: "Apple Health", icon: "figure.run", color: .vitaSand)

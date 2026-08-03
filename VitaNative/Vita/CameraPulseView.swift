@@ -183,11 +183,13 @@ final class PulseCameraViewController: UIViewController, AVCaptureVideoDataOutpu
         let yEnd = height * 7 / 8
         var red = 0.0
         var green = 0.0
+        var blue = 0.0
         var count = 0.0
 
         for y in stride(from: yStart, to: yEnd, by: 3) {
             for x in stride(from: xStart, to: xEnd, by: 3) {
                 let offset = y * bytesPerRow + x * 4
+                blue += Double(buffer[offset])
                 green += Double(buffer[offset + 1])
                 red += Double(buffer[offset + 2])
                 count += 1
@@ -195,6 +197,15 @@ final class PulseCameraViewController: UIViewController, AVCaptureVideoDataOutpu
         }
 
         guard count > 0 else { return nil }
-        return (red / count) / max(green / count, 1)
+        let meanRed = red / count
+        let meanGreen = green / count
+        let meanBlue = blue / count
+        guard meanRed > 45,
+              meanRed > meanGreen * 1.08,
+              meanRed > meanBlue * 1.08 else { return nil }
+
+        // The red channel is the strongest fingertip PPG signal under the iPhone torch.
+        // Normalize it so small exposure changes do not dominate the pulse waveform.
+        return meanRed / 255
     }
 }

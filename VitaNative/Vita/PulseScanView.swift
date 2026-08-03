@@ -33,7 +33,7 @@ struct PulseScanView: View {
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.white)
 
-                Text("Cover the rear camera and flash with your fingertip. Stay still while Vita samples the live signal.")
+                Text("Cover the rear camera and flash with your fingertip. Stay still while Vita samples the optical pulse signal.")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(Color.white.opacity(0.62))
@@ -82,7 +82,7 @@ struct PulseScanView: View {
                         switch result {
                         case .success(let bpm):
                             self.progress = 1
-                            self.status = "Pulse detected · \(String(format: "%.0f", bpm)) bpm"
+                            self.status = "Camera pulse estimate · \(String(format: "%.0f", bpm)) bpm"
                             self.finished = true
                             onComplete(bpm)
                         case .failure(let error):
