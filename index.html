@@ -32,16 +32,16 @@
       <section class="readiness-card" aria-labelledby="readiness-title">
         <div class="readiness-copy">
           <div class="card-label"><span class="status-dot"></span> TODAY'S READINESS</div>
-          <h2 id="readiness-title">Feeling good today</h2>
-          <p>Your signals are trending in a healthy direction.</p>
+          <h2 id="readiness-title">Build your baseline</h2>
+          <p>Complete a pulse check to start your personal trend.</p>
           <button class="text-button" id="seeInsights">See insights <span>→</span></button>
         </div>
-        <div class="readiness-score" aria-label="Readiness score 82 out of 100">
+        <div class="readiness-score" aria-label="Readiness score not available yet">
           <svg viewBox="0 0 100 100" class="score-ring" aria-hidden="true">
             <circle class="ring-track" cx="50" cy="50" r="42" />
             <circle class="ring-value" cx="50" cy="50" r="42" />
           </svg>
-          <div class="score-number">82<small>/100</small></div>
+        <div class="score-number">—<small>today</small></div>
         </div>
       </section>
 
@@ -62,27 +62,27 @@
             <div class="mini-chart heart-chart" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
           </article>
           <article class="signal-card signal-oxygen">
-            <div class="signal-card-top"><span class="signal-icon oxygen-icon">O₂</span><span class="trend steady">— 0%</span></div>
+            <div class="signal-card-top"><span class="signal-icon oxygen-icon">O₂</span><span class="trend steady">device only</span></div>
             <p class="signal-name">Oxygen</p>
-            <p class="signal-value"><strong id="oxygen">98</strong><span>% SpO₂</span></p>
+            <p class="signal-value"><strong id="oxygen">—</strong><span>validated device</span></p>
             <div class="mini-chart oxygen-chart" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
           </article>
           <article class="signal-card signal-pressure">
-            <div class="signal-card-top"><span class="signal-icon pressure-icon">↕</span><span class="trend down">↘ 2%</span></div>
+            <div class="signal-card-top"><span class="signal-icon pressure-icon">↕</span><span class="trend down">device only</span></div>
             <p class="signal-name">Blood pressure</p>
-            <p class="signal-value"><strong id="bloodPressure">118/76</strong><span>mmHg</span></p>
+            <p class="signal-value"><strong id="bloodPressure">—/—</strong><span>validated device</span></p>
             <div class="mini-chart pressure-chart" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
           </article>
           <article class="signal-card signal-energy">
-            <div class="signal-card-top"><span class="signal-icon energy-icon">ϟ</span><span class="trend up">↗ 6%</span></div>
+            <div class="signal-card-top"><span class="signal-icon energy-icon">ϟ</span><span class="trend up">needs history</span></div>
             <p class="signal-name">Energy</p>
-            <p class="signal-value"><strong>76</strong><span>/100</span></p>
+            <p class="signal-value"><strong>—</strong><span>needs history</span></p>
             <div class="mini-chart energy-chart" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
           </article>
           <article class="signal-card signal-sleep">
-            <div class="signal-card-top"><span class="signal-icon sleep-icon">☾</span><span class="trend up">↗ 8%</span></div>
+            <div class="signal-card-top"><span class="signal-icon sleep-icon">☾</span><span class="trend up">Apple Health</span></div>
             <p class="signal-name">Restfulness</p>
-            <p class="signal-value"><strong id="restfulness">7<span class="decimal">h</span>42</strong><span>last night</span></p>
+            <p class="signal-value"><strong id="restfulness">—</strong><span>connect sleep data</span></p>
             <div class="mini-chart sleep-chart" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
           </article>
         </div>
@@ -142,8 +142,9 @@
         </div>
         <p class="scan-status" id="scanStatus">Ready when you are</p>
         <button class="primary-button modal-action" id="modalAction">Begin scan <span class="arrow">→</span></button>
-        <p class="modal-footnote">This is a wellness estimate for personal trends, not a medical measurement.</p>
+        <p class="modal-footnote">Pulse is a camera estimate for personal trends. Blood pressure and SpO₂ need validated devices.</p>
         <video id="cameraPreview" autoplay playsinline muted></video>
+        <canvas id="ppgCanvas" width="64" height="48" aria-hidden="true"></canvas>
       </section>
     </div>
 
